@@ -7,12 +7,12 @@ def buscar_estudiante(nombre):
     cursor = conexion.cursor()
 
     consulta = (
-        "SELECT id, nombre, correo "
-        "FROM estudiantes "
-        "WHERE nombre = '" + nombre + "'"
+    "SELECT id, nombre, correo "
+    "FROM estudiantes "
+    "WHERE nombre = ?"
     )
 
-    cursor.execute(consulta)
+    cursor.execute(consulta, (nombre,))
 
     resultado = cursor.fetchall()
     conexion.close()
@@ -22,15 +22,3 @@ nombre = input("Nombre del estudiante: ")
 estudiantes = buscar_estudiante(nombre)
 
 print(estudiantes)
-
-
-
-Versión Corregida
-
-consulta = (
-    "SELECT id, nombre, correo "
-    "FROM estudiantes "
-    "WHERE nombre = ?"
-)
-
-cursor.execute(consulta, (nombre,))
