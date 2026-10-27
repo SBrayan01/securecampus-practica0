@@ -1,5 +1,36 @@
 # Errores iniciales y soluciones
 
+## Evidencia inicial de la terminal
+
+La primera ejecución de las pruebas mostró los siguientes resultados:
+
+```text
+(.venv) PS C:\Users\jesus\Downloads\securecampus-practica0\Branji> python -m pytest -q
+FFFFFFFF.FFF...                                                                                                         [100%]
+
+11 failed, 4 passed in 13.32s
+```
+
+Los 11 fallos reportados fueron:
+
+```text
+FAILED tests/test_security.py::test_grade_invalid[150]
+FAILED tests/test_security.py::test_grade_invalid[-1]
+FAILED tests/test_security.py::test_grade_invalid[hola]
+FAILED tests/test_security.py::test_grade_invalid[]
+FAILED tests/test_security.py::test_grade_invalid[NaN]
+FAILED tests/test_security.py::test_grade_invalid[Infinity]
+FAILED tests/test_security.py::test_grade_invalid[None]
+FAILED tests/test_security.py::test_grade_invalid[99.999]
+FAILED tests/test_security.py::test_professor_other_group_forbidden
+FAILED tests/test_security.py::test_student_cannot_modify
+FAILED tests/test_security.py::test_student_cannot_read_other_student
+```
+
+Los errores de validación devolvían `200` cuando debían devolver `400` o
+dejaban escapar `decimal.InvalidOperation`. Los errores de permisos devolvían
+`200` cuando debían devolver `403`.
+
 ## Resumen
 
 La ejecución inicial de las pruebas produjo:
@@ -164,15 +195,9 @@ La corrección se verificó ejecutando la suite desde el entorno virtual del
 proyecto:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -q
+(.venv) PS C:\Users\jesus\Downloads\securecampus-practica0\Branji> python -m pytest -q
+...............                                                                                                         [100%]
+15 passed in 12.86s
 ```
 
-Resultado:
-
-```text
-15 passed in 13.81s
-```
-
-La primera ejecución desde la carpeta padre utilizó otro entorno virtual sin
-Flask y produjo `ModuleNotFoundError`. La ejecución válida fue la realizada
-desde la carpeta `Branji`, usando `Branji\.venv`.
+Esta ejecución confirma que los 15 casos de prueba pasan correctamente.
