@@ -14,3 +14,7 @@ def buscar_estudiante(nombre):
     conexion.close()
 
     return resultado
+nombre = input("Nombre del estudiante: ")
+estudiantes = buscar_estudiante(nombre)
+
+print(estudiantes)

@@ -32,18 +32,21 @@ def inicio():
 def buscar():
     nombre = request.args.get("nombre", "")
 
-    return f"""
+    resultado_html = """
     <html>
         <head>
             <title>Resultado - SecureCampus</title>
         </head>
         <body>
             <h1>Resultado de búsqueda</h1>
-            <p>Estudiante buscado: {nombre}</p>
+            <p>Estudiante buscado: {{ nombre }}</p>
             <a href="/">Regresar</a>
         </body>
     </html>
     """
+
+    return render_template_string(resultado_html, nombre=nombre)
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=False)
