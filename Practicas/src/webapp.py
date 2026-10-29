@@ -1,4 +1,3 @@
-
 from flask import Flask, request, render_template_string
 
 app = Flask(__name__)
@@ -25,11 +24,9 @@ HTML = """
 </html>
 """
 
-
 @app.route("/")
 def inicio():
     return render_template_string(HTML)
-
 
 @app.route("/buscar")
 def buscar():
