@@ -4,10 +4,13 @@
 **Clave de práctica:** SC-LAB-007  
 **Asignatura / tema:** Desarrollo seguro — Seguridad en aplicaciones web y APIs  
 **Modalidad:** Demostración guiada  
-**Estudiante:** ____________________________________  
-**Grupo:** ____________________  
-**Fecha:** ____________________
+**Integrantes:** 
 
+Samuel Alcántara Fernández
+
+Jesús Alberto Arroyo Lugo
+
+Brayan Antonio Segundo de Jesús
 ---
 
 ## 1. Descripción de la práctica
@@ -281,19 +284,15 @@ En este apartado se dejan espacios para incorporar las capturas solicitadas en l
 
 **Descripción:** consulta autorizada de una calificación mediante REST. Debe observarse el código HTTP 200 y el cuerpo JSON de la respuesta.
 
-**Insertar captura aquí:**
 
-> [Espacio reservado para la captura REST 200]
+> ![alt text](image.png)
 
 ---
 
 ### Evidencia 2. REST GET — respuesta HTTP 403
 
 **Descripción:** consulta denegada al intentar acceder a un estudiante de un grupo al que la cuenta autenticada no pertenece. Debe observarse el código HTTP 403.
-
-**Insertar captura aquí:**
-
-> [Espacio reservado para la captura REST 403]
+![alt text](image-1.png)
 
 ---
 
@@ -301,22 +300,14 @@ En este apartado se dejan espacios para incorporar las capturas solicitadas en l
 
 **Descripción:** incluir la consulta GraphQL autorizada con respuesta HTTP 200 y la consulta con identificadores de otro grupo que produce HTTP 403. Se debe distinguir el resultado permitido del acceso denegado.
 
-**Insertar capturas aquí:**
-
-> [Espacio reservado para la captura GraphQL 200]
-
-> [Espacio reservado para la captura GraphQL 403]
+![alt text](image-2.png)
 
 ---
 
 ### Evidencia 4. Resultado de pruebas con pytest
 
 **Descripción:** captura de la terminal después de ejecutar `python -m pytest -q`. La evidencia debe permitir identificar el número de pruebas aprobadas y, si existieran, los fallos.
-
-**Insertar captura aquí:**
-
-> [Espacio reservado para la captura del resultado pytest]
-
+![alt text](image-3.png)
 ## 14. Conclusión
 
 La práctica permitió reconocer las diferencias entre REST y GraphQL a partir de solicitudes reales realizadas en SecureCampus. REST utiliza rutas y métodos HTTP para consultar o modificar recursos, mientras que GraphQL permite especificar mediante una consulta los campos que se desean recuperar.
