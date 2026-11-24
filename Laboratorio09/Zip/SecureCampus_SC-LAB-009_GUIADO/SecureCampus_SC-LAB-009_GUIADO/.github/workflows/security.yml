@@ -1,0 +1,49 @@
+name: SC-LAB-009 | Controles DevSecOps
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    name: Pruebas, SAST y dependencias
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt -r requirements-dev.txt
+      - name: Pruebas de seguridad y funcionalidad
+        run: python -m pytest -q
+      - name: Analisis estatico SAST - Bandit
+        run: python -m bandit -r src -ll -ii
+      - name: Auditoria de dependencias - pip-audit
+        run: python -m pip_audit -r requirements.txt
+
+  container:
+    name: Imagen y escaneo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Construir imagen de laboratorio
+        run: docker build -t securecampus:lab009 .
+      - name: Escanear imagen con Trivy
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: 'securecampus:lab009'
+          format: 'table'
+          vuln-type: 'os,library'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'
+          ignore-unfixed: true

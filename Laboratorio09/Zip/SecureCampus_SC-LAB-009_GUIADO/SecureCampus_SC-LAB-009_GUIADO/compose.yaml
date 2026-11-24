@@ -1,0 +1,26 @@
+services:
+  securecampus:
+    build: .
+    ports:
+      - "127.0.0.1:5000:8000"
+    environment:
+      SC_DB_PATH: /data/securecampus_demo.db
+      # EXCLUSIVAMENTE LABORATORIO LOCAL con HTTP; en produccion: 1 + HTTPS/TLS
+      SC_COOKIE_SECURE: "0"
+    volumes:
+      - securecampus_data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=32m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 100
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health',timeout=3)"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+volumes:
+  securecampus_data:
